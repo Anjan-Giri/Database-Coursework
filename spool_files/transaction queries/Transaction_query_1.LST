@@ -1,0 +1,21 @@
+SQL> SELECT EXTRACT(YEAR FROM "Date") AS y,
+  2  EXTRACT(MONTH FROM "Date") AS m,
+  3  SUM("Total Amount") AS Total_Revenue
+  4  FROM "ORDER"
+  5  GROUP BY
+  6  EXTRACT(YEAR FROM "Date"),
+  7  EXTRACT(MONTH FROM "Date")
+  8  ORDER BY y, m;
+
+         Y          M TOTAL_REVENUE                                                                                                                   
+---------- ---------- -------------                                                                                                                   
+      2023          1          5000                                                                                                                   
+      2023          3          7200                                                                                                                   
+      2023          5          4200                                                                                                                   
+      2023          7           900                                                                                                                   
+      2023          8          7500                                                                                                                   
+      2023         11          3600                                                                                                                   
+
+6 rows selected.
+
+SQL> spool off;

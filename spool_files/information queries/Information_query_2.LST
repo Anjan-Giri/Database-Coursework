@@ -1,0 +1,13 @@
+SQL> SELECT *
+  2  FROM "ORDER"
+  3  WHERE "Order Id" IN (
+  4  SELECT "Order Id"
+  5  FROM product_customer_order
+  6  WHERE "Product Id" = 'p4')
+  7  AND "Date" BETWEEN '01-MAY-2023' AND '28-MAY-2023';
+
+Order Id                  Invoice Id                Date        Quantity Total Amount                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+------------------------- ------------------------- --------- ---------- ------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+o4                        i1                        25-MAY-23         15         3000                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+SQL> spool off;

@@ -1,0 +1,14 @@
+SQL> SELECT * FROM (
+  2  SELECT customer."Customer Id", customer."Customer Name",
+  3  "ORDER"."Order Id", "ORDER"."Date"
+  4  FROM customer
+  5  JOIN product_customer_order ON customer."Customer Id" = product_customer_order."Customer Id"
+  6  JOIN "ORDER" ON product_customer_order."Order Id" = "ORDER"."Order Id"
+  7  ORDER BY "ORDER"."Date" DESC)
+  8  WHERE ROWNUM = 1;
+
+Customer Id               Customer Name             Order Id                  Date                                                                    
+------------------------- ------------------------- ------------------------- ---------                                                               
+c6                        Jeff Bezos                o7                        26-NOV-23                                                               
+
+SQL> spool off;

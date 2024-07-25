@@ -1,0 +1,17 @@
+SQL> SELECT "Customer Id", "Customer Name", "Total Spending"
+  2  FROM (
+  3  SELECT c."Customer Id", c."Customer Name",
+  4  SUM(o."Total Amount") AS "Total Spending",
+  5  RANK() OVER (ORDER BY SUM(o."Total Amount") DESC) AS detail
+  6  FROM customer c
+  7  JOIN product_customer_order pco ON c."Customer Id" = pco."Customer Id"
+  8  JOIN "ORDER" o ON pco."Order Id" = o."Order Id"
+  9  WHERE EXTRACT(MONTH FROM o."Date") = 8
+ 10  GROUP BY c."Customer Id", c."Customer Name")
+ 11  WHERE detail = 1;
+
+Customer Id               Customer Name             Total Spending                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+------------------------- ------------------------- --------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+c3                        Nico Robin                          7500                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+SQL> spool off;
